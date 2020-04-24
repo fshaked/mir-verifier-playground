@@ -11,10 +11,10 @@ in case they are useful to others.
 > and attempts to prove that all assertions pass on all valid inputs.
 
 
-<!--
 ## Table of Contents
 
 1. [Installing mir-verifier](docs/installation.md)
+<!--
 2. [Using mir-verifier](docs/using.md)
 3. [mir-verifier issues](docs/issues.md)
 -->
