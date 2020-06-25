@@ -45,6 +45,7 @@ $ make install
 
 ### Building mir-verifier:
 
+Install mir-verifier (I'm using commit 12da6f9e76162128e4e885b26c1ae890cdf3c575)
 ``` shell
 $ git clone git@github.com:GaloisInc/mir-verifier.git
 $ cd mir-verifier
