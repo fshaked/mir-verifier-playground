@@ -11,6 +11,15 @@ $ sudo apt install cabal-install ghc
 $ cabal new-update
 ```
 
+Older versions of cabal (2.4.0.1) had an evil
+[bug](https://github.com/haskell/cabal/issues/5491) so you might want to
+upgrade:
+
+``` shell
+$ cabal install cabal-install
+$ cabal user-config update
+```
+
 Install rust using rustup (nightly-2020-03-22 is prescribed by mir-json):
 
 ``` shell
@@ -56,7 +65,11 @@ $ ./translate_libs.sh
 $ cabal v2-install crux-mir
 ```
 
-**NOTE:** seems like `cabal v2-install` doesn't replace older install properly. I had to manually remove `~/.cabal/bin/crux-mir` and  `~/.cabal/store/ghc-8.6.5/mir-verifier-*` before issuing the `cabal v2-install crux-mir` command above.
+**NOTE:** (figured out this is the bug I mentioned above, if you're using the
+latest cabal you should be fine) seems like `cabal v2-install` doesn't replace
+older install properly. I had to manually remove `~/.cabal/bin/crux-mir` and
+`~/.cabal/store/ghc-8.6.5/mir-verifier-*` before issuing the `cabal v2-install
+crux-mir` command above.
 
 ### Testing
 
@@ -84,6 +97,8 @@ test add1/3a1fbbbh::crux_test[0]: returned 2, ok
 [Crux] Overall status: Valid.
 ```
 
+**NOTE:** The following has been reported to Galois and resolved.
+
 I can't figure out how to run, from an arbitrary working directory, crux-mir directly on a single file.
 The above works only when executed from the root directory of the mir-verifier source tree, though the test itself can be in an arbitrary location.
 I think crux-mir uses a mir-json front-end that doesn't read `CRUX_RUST_LIBRARY_PATH`.
@@ -93,7 +108,7 @@ I'm not sure if this use case is intentionally not supported.
 
 First create a generic cargo project.  **Note that we use the `--lib` option**,
 this has the effect of not generating src/main.rs, which for some reason causes
-crux-test to fail (see error message below).
+crux-test to fail (see error message below) **(reported to Galois and resolved)**.
 
 ``` shell
 $ cargo new test-crux-mir --lib
