@@ -1,0 +1,68 @@
+==========================================================================
+'@expect error' tests:
+
+exit code != 0:
+  tests/add_fail.rs
+  tests/arith_assume_fail.rs
+  tests/closure_fail.rs
+  tests/div_fail.rs
+  tests/double_fail.rs
+  tests/fac_fail.rs
+  tests/fib_fail.rs
+  tests/generic_function_fail1.rs
+  tests/generic_function_fail2.rs
+  tests/generic_function_fail3.rs
+  tests/generic_function_fail4.rs
+  tests/generic_function_fail5.rs
+  tests/mod_fail.rs
+  tests/mul_fail.rs
+  tests/point_fail.rs
+  tests/sub_fail.rs
+  tests/vec1_fail1.rs
+  tests/vec1_fail2.rs
+  tests/vec1_fail3.rs
+  tests/vec_resize_fail.rs
+
+timed out (should be empty):
+  tests/gauss_sum_nondet_fail.rs
+  tests/iterator_fail.rs
+
+==========================================================================
+'@expect overflow' tests:
+exit code == 0 (should be empty):
+  # SF: crux is not detecting overflow (for mul)
+  tests/mul_overflow.rs
+
+exit code != 0:
+  tests/add_overflow.rs
+  tests/sub_overflow.rs
+
+==========================================================================
+'@expect reachable' tests:
+exit code != 0:
+  tests/option_fail.rs
+
+==========================================================================
+'@expect verified' tests:
+exit code == 0:
+  tests/arith_assume2.rs
+  tests/arith_assume.rs
+  tests/arith.rs
+  tests/double.rs
+  tests/fac.rs
+  tests/fib.rs
+  tests/generic_function.rs
+  tests/option.rs
+  tests/point.rs
+  tests/vec1.rs
+  tests/vec_resize.rs
+
+exit code != 0 (should be empty):
+  # SF: crux is right, the assume 'num <= std::i32::MAX - 5' should be '- 6'
+  tests/closure.rs
+
+timed out (should be empty):
+  # SF: loop?
+  tests/gauss_sum_nondet.rs
+  # SF: crux is having trouble with the recursion of 'fac'
+  tests/iterator.rs
