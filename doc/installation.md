@@ -20,6 +20,13 @@ $ cabal install cabal-install
 $ cabal user-config update
 ```
 
+In any case, make sure `$HOME/.cabal/bin` is in your `PATH`.
+If needed, add something like this to your shell init script:
+
+``` shell
+export PATH=$HOME/.cabal/bin:$PATH
+```
+
 Install rust using rustup (nightly-2020-03-22 is prescribed by mir-json):
 
 ``` shell
@@ -63,6 +70,12 @@ $ cabal v2-build
 $ ./translate_libs.sh
 # For running on a Cargo project:
 $ cabal v2-install crux-mir
+```
+
+Add the following line to your shell init script (where `<mir-verifier>` is the path to where mir-verifier is):
+
+``` shell
+export CRUX_RUST_LIBRARY_PATH=<mir-verifier>/rlibs
 ```
 
 **NOTE:** (figured out this is the bug I mentioned above, if you're using the
